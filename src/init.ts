@@ -7,14 +7,21 @@ const path = require('path');
 const program = require('commander');
 const inquirer = require('inquirer');
 const packageJson = require('./../package.json');
+
 import New from './commands/new'
+import Clean from './commands/clean';
+import JsBundler from './commands/js-bundler';
 
 
 class Run {
 
-    newComand: any;
+    newCommand: any
+    cleanCommand: any
+    jsBundlerCommand: any
     constructor() {
-        this.newComand = new New();
+        this.newCommand = new New();
+        this.cleanCommand = new Clean();
+        this.jsBundlerCommand = new JsBundler();
     }
 
     public async initialize() {
@@ -24,7 +31,8 @@ class Run {
 
         this.help();
         this.new();
-
+        this.clean();
+        this.jsBundler();
 
         program.parse(process.argv);
 
@@ -60,7 +68,7 @@ class Run {
 
             projectName = projectName || answers.projectName;
             try {
-                await this.newComand.initialize(projectName);
+                await this.newCommand.initialize(projectName);
                 console.log(`${chalk.green('Projeto criado com sucesso!')}`);
             } catch (error) {
                 console.log(`${chalk.red(error)}`);
@@ -69,6 +77,40 @@ class Run {
 
             
         });
+    }
+
+    private clean(){
+
+        program
+        .command('clean')
+        .description('clean www directory')
+        .action(async () => {
+            try {
+                this.cleanCommand.initialize()
+                console.log(`${chalk.green('www directory cleaned')}`);
+            } catch (error) {
+                console.log(`${chalk.red(error)}`);
+            }
+               
+        });
+       
+    }
+
+    private jsBundler(){
+
+        program
+        .command('jsbundler')
+        .description('JavaScript Bundler')
+        .action(async () => {
+            try {
+                this.jsBundlerCommand.initialize()
+                console.log(`${chalk.green('JavaScript Bundled')}`);
+            } catch (error) {
+                console.log(`${chalk.red(error)}`);
+            }
+               
+        });
+       
     }
 
 }
