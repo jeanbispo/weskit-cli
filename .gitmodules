@@ -1,0 +1,3 @@
+[submodule "structure_files"]
+	path = structure_files
+	url = https://github.com/HDeiro/weskit.git
