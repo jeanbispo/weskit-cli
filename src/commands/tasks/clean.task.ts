@@ -1,6 +1,3 @@
-const del = require('del');
+import del from 'del'
 
-let clean = async () => await del('www/**', { force: true });
-
-
-module.exports = clean;
+export let clean: Function = async () => await del('www/**', { force: true });

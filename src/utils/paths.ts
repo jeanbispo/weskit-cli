@@ -1,10 +1,10 @@
 
-const files = require('./files');
+import { Files as files } from "./files";
 
 const path_build = files.getCurrentDirectory() + '/www';
 const path_source = files.getCurrentDirectory() + '/app';
 
-let Paths = {
+export let Paths: any = {
 
     js: {
         "pwa-cache-service-worker": {
@@ -113,5 +113,3 @@ let Paths = {
 	}
 
 }
-
-module.exports = Paths;

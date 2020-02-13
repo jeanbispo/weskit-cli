@@ -1,6 +1,7 @@
-const chalk = require('chalk');
-const clear = require('clear');
-const clean = require('./tasks/clean.task');
+
+import chalk from 'chalk'
+import clear from 'clear'
+import { clean } from './tasks/clean.task'
 
 export default class Clean {
   

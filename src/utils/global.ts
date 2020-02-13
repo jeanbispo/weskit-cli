@@ -1,5 +1,5 @@
 
-let Global = {
+export let Global: any = {
     MODE_PRODUCTION: true,
     JS_COMPRESS_OPTIONS: {
         preserveComments: 'license',
@@ -17,5 +17,3 @@ let Global = {
         outputStyle: "compressed"
     }
 }
-
-module.exports = Global;

@@ -1,12 +1,15 @@
 
 
-const chalk = require('chalk');
-const clear = require('clear');
-const figlet = require('figlet');
-const path = require('path');
-const program = require('commander');
-const inquirer = require('inquirer');
+
 const packageJson = require('./../package.json');
+
+import chalk from 'chalk'
+import clear from 'clear'
+import figlet from 'figlet'
+import path from 'path'
+import program from 'commander'
+import inquirer from 'inquirer'
+
 
 import New from './commands/new'
 import Clean from './commands/clean';
@@ -33,6 +36,7 @@ class Run {
         this.new();
         this.clean();
         this.jsBundler();
+        this.tester();
 
         program.parse(process.argv);
 
@@ -66,7 +70,7 @@ class Run {
                 ]);
             }
 
-            projectName = projectName || answers.projectName;
+            projectName = projectName || answers?.projectName;
             try {
                 await this.newCommand.initialize(projectName);
                 console.log(`${chalk.green('Projeto criado com sucesso!')}`);
@@ -108,6 +112,19 @@ class Run {
             } catch (error) {
                 console.log(`${chalk.red(error)}`);
             }
+               
+        });
+       
+    }
+
+    private tester(){
+
+        program
+        .command('teste [msg]')
+        .description('Tester')
+        .action(async (msg: string) => {
+            
+            console.log(`${chalk.red(msg)}`)
                
         });
        

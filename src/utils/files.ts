@@ -1,12 +1,10 @@
+import fs from 'fs'
+import path from 'path'
 
-
-let Files = {
-
-    fs: require('fs'),
-    path: require('path'),
+export let Files: any = {
 
     getCurrentDirectoryBase: () => {
-        return Files.path.basename(process.cwd());
+        return path.basename(process.cwd());
     },
 
     getCurrentDirectory: () => {
@@ -14,38 +12,38 @@ let Files = {
     },
 
     directoryExists: (filePath: string) => {
-        return Files.fs.existsSync(filePath);
+        return fs.existsSync(filePath);
     },
     copyFileSync: (source: string, target: string) => {
 
         var targetFile = target;
 
         //if target is a directory a new file with the same name will be created
-        if (Files.fs.existsSync(target)) {
-            if (Files.fs.lstatSync(target).isDirectory()) {
-                targetFile = Files.path.join(target, Files.path.basename(source));
+        if (fs.existsSync(target)) {
+            if (fs.lstatSync(target).isDirectory()) {
+                targetFile = path.join(target, path.basename(source));
             }
         }
 
-        fs.writeFileSync(targetFile, Files.fs.readFileSync(source));
+        fs.writeFileSync(targetFile, fs.readFileSync(source));
     },
-    
+
     copyFolderRecursiveSync: (source: string, target: string, targetFolderPath: string) => {
         var files = [];
 
         //check if folder needs to be created or integrated
-        var targetFolder = Files.path.join(target, targetFolderPath);
-        if (!Files.fs.existsSync(targetFolder)) {
-            Files.fs.mkdirSync(targetFolder);
+        var targetFolder = path.join(target, targetFolderPath);
+        if (!fs.existsSync(targetFolder)) {
+            fs.mkdirSync(targetFolder);
         }
 
         //copy
-        if (Files.fs.lstatSync(source).isDirectory()) {
-            files = Files.fs.readdirSync(source);
+        if (fs.lstatSync(source).isDirectory()) {
+            files = fs.readdirSync(source);
             files.forEach(function (file: any) {
-                var curSource = Files.path.join(source, file);
-                if (Files.fs.lstatSync(curSource).isDirectory()) {
-                    Files.copyFolderRecursiveSync(curSource, targetFolder, Files.path.basename(curSource));
+                var curSource = path.join(source, file);
+                if (fs.lstatSync(curSource).isDirectory()) {
+                    Files.copyFolderRecursiveSync(curSource, targetFolder, path.basename(curSource));
                 } else {
                     Files.copyFileSync(curSource, targetFolder);
                 }
@@ -54,5 +52,3 @@ let Files = {
     }
 
 }
-
-module.exports = Files;

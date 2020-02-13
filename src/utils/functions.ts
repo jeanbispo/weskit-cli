@@ -1,15 +1,12 @@
+import { Paths as paths } from "./paths";
 
 
-let Functions = {
-    paths: require('./paths'),
+export let Functions: any = {
 
     listBundle:(group: any, filter: any) => {
-        return Object.keys(Functions.paths[group])
-            .filter(bundle => Functions.paths[group][bundle].bundle.length)
+        return Object.keys(paths[group])
+            .filter(bundle => paths[group][bundle].bundle.length)
             .filter(bundle => filter ? filter == bundle : true);
     }
 
 }
-
-
-module.exports = Functions;

@@ -1,7 +1,9 @@
-const fs = require('fs');
-const chalk = require('chalk');
-const clear = require('clear');
-const files = require('./../utils/files');
+
+import { Files as files } from "./../utils/files"
+
+import fs from 'fs'
+import clear from 'clear'
+import chalk from 'chalk'
 
 export default class New {
   

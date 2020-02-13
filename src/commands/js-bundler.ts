@@ -1,7 +1,8 @@
-const chalk = require('chalk');
-const clear = require('clear');
-const jsBundler = require('./tasks/js-bundler.task');
 
+
+import chalk from 'chalk'
+import clear from 'clear'
+import { jsBundler } from './tasks/js-bundler.task'
 
 export default class JsBundler {
   

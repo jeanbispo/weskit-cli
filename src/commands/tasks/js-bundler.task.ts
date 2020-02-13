@@ -1,20 +1,31 @@
 const yargs = require('yargs').argv;
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const babel = require('gulp-babel');
-const concat = require('gulp-concat');
-const gutil = require('gulp-util');
-const uglify = require('uglify-js');
-const bsync = require('browser-sync').create();
-const sourcemaps = require('gulp-sourcemaps');
-const fs = require('fs');
-var babelify = require('babelify');
-var browserify = require("browserify");
-const functions = require('./../../utils/functions');
-const globalVariable = require('./../../utils/global');
-var source = require('vinyl-source-stream');
+// const gulp = require('gulp');
+// const gulpif = require('gulp-if');
+// const babel = require('gulp-babel');
+// const concat = require('gulp-concat');
+// const gutil = require('gulp-util');
+// const uglify = require('uglify-js');
+// const bsync = require('browser-sync').create();
+// const sourcemaps = require('gulp-sourcemaps');
+// const fs = require('fs');
+// var babelify = require('babelify');
+// var browserify = require("browserify");
+// const functions = require('./../../utils/functions');
 
-let jsBundler = async function () {
+// const globalVariable = require('./../../utils/global');
+// var source = require('vinyl-source-stream');
+
+
+
+
+import fs from 'fs'
+import browserify from 'browserify'
+import {Functions as functions} from './../../utils/functions'
+const babelify = require('babelify');
+
+
+export let jsBundler: Function = async function () {
+
 
     let paths = require('./../../utils/paths');
 
@@ -62,5 +73,3 @@ let jsBundler = async function () {
 
 	return true;
 }
-
-module.exports = jsBundler;
